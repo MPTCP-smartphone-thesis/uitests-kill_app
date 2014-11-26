@@ -12,6 +12,5 @@ public class LaunchSettings extends UiAutomatorTestCase {
 		assertTrue("No argument 'app'", app != null && !app.isEmpty());
 
 		Utils.killApp(this, app);
-		Utils.killTcpdump();
 	}
 }
