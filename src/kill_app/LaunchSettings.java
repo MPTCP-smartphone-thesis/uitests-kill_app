@@ -19,7 +19,8 @@ public class LaunchSettings extends UiAutomatorTestCase {
 		String app = getParams().getString("app");
 		assertTrue("No argument 'app'", app != null && !app.isEmpty());
 
-		Utils.killApp(this, app);
+		// we can give a # to avoid spaces in app param
+		Utils.killApp(this, app.replace('#', ' '));
 		getUiDevice().pressHome();
 	}
 }
