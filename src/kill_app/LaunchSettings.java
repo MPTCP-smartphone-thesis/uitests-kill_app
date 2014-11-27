@@ -1,10 +1,12 @@
 package kill_app;
 
 import utils.Utils;
-
 import android.os.RemoteException;
+import android.widget.GridLayout;
 
 import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.core.UiScrollable;
+import com.android.uiautomator.core.UiSelector;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 
 public class LaunchSettings extends UiAutomatorTestCase {
@@ -20,7 +22,18 @@ public class LaunchSettings extends UiAutomatorTestCase {
 		assertTrue("No argument 'app'", app != null && !app.isEmpty());
 
 		// we can give a # to avoid spaces in app param
-		Utils.killApp(this, app.replace('#', ' '));
+		String appName = app.replace('#', ' ');
+		assertTrue("Oooops",
+				Utils.openApp(this, "Settings", "com.android.settings"));
+		// Click on Apps
+		Utils.click(Utils.getObjectWithClassName("android.widget.LinearLayout",
+				22));
+
+		UiScrollable settingsList = new UiScrollable(
+				new UiSelector().scrollable(true));
+		Utils.click(settingsList, GridLayout.class.getName(), appName);
+		Utils.clickAndWaitForNewWindow(Utils.getObjectWithText("Force stop"));
+		Utils.click(Utils.getObjectWithText("OK"));
 		getUiDevice().pressHome();
 	}
 }
