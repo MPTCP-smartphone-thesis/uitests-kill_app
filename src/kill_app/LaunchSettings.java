@@ -17,6 +17,14 @@ public class LaunchSettings extends UiAutomatorTestCase {
 		} catch (RemoteException e1) { // not a big deal
 			e1.printStackTrace();
 		}
+		
+		String pkg = getParams().getString("package");
+		if (pkg != null) {
+			String[] cmds = { "am force-stop " + pkg };
+			Utils.runAsRoot(cmds);
+			Utils.runAsRoot(cmds);
+			return;
+		}
 
 		String app = getParams().getString("app");
 		assertTrue("No argument 'app'", app != null && !app.isEmpty());
