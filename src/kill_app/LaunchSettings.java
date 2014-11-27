@@ -21,6 +21,8 @@ public class LaunchSettings extends UiAutomatorTestCase {
 		String pkg = getParams().getString("package");
 		if (pkg != null) {
 			String[] cmds = { "am force-stop " + pkg };
+			// Don't know why, but need to do the command twice (otherwise
+			// doesn't work)
 			Utils.runAsRoot(cmds);
 			Utils.runAsRoot(cmds);
 			return;
