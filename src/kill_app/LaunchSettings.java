@@ -47,6 +47,12 @@ public class LaunchSettings extends UiAutomatorTestCase {
 			return;
 		}
 
+		String tv = getParams().getString("tvaccept");
+		if (tv != null && !tv.isEmpty()) {
+			Utils.getObjectWithId("com.teamviewer.quicksupport.market:id/tvDialogInputButtonPositive").click();
+			return;
+		}
+
 		String app = getParams().getString("app");
 		// Force-stop via Settings app
 		assertTrue("No argument 'app'", app != null && !app.isEmpty());
