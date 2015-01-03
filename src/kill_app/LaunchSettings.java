@@ -60,7 +60,8 @@ public class LaunchSettings extends UiAutomatorTestCase {
 		// we can give a # to avoid spaces in app param
 		String appName = app.replace('#', ' ');
 		assertTrue("Oooops",
-				Utils.openApp(this, "Settings", "com.android.settings"));
+				Utils.openApp(this, "Settings",
+						"com.android.settings", ".Settings"));
 		// Click on Apps
 		Utils.click(Utils.getObjectWithClassName("android.widget.LinearLayout",
 				22));
